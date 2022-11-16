@@ -1,15 +1,16 @@
 <?php
 
+define('JSON','contatos.json');
+
 $acao = isset($_POST['acao'])?$_POST['acao']:'';
 
 if ($acao =='Salvar'){
-
     //formata data
     $data = DateTime::createFromFormat('Y-m-d', $_POST['nascimento']);
     $datastatus = FALSE;
     if($data && $data->format('Y-m-d') === $_POST['nascimento']){
     $datastatus = TRUE;
-    }   
+    }
     //validações
     if (empty($_POST["nome"])) {
         echo "Nome inválido";
@@ -19,10 +20,12 @@ if ($acao =='Salvar'){
         echo "Idade inválida";
     }elseif ($datastatus == FALSE) {
         echo "Data inválida";
-    }elseif ($_POST["parente"]!= "1" and $_POST["parente"]!= "2") {
-        echo "Parentesco inválido";
-    }elseif ($_POST["cidade"]!= "1" and $_POST["cidade"]!= "2"and $_POST["cidade"]!= "3") {
-        echo "Local inválido";
+    }elseif ($_POST["origem"]!= "1" and $_POST["origem"]!= "2"and $_POST["origem"]!= "3") {
+        echo "Origem inválida";
+    }elseif ($_POST["cidade"]!= "1" and $_POST["cidade"]!= "2"and $_POST["cidade"]!= "3" and $_POST["cidade"]!= "4"and $_POST["cidade"]!= "5") {
+        echo "Cidade inválida";
+    }elseif ($_POST["sexo"]!= "1" and $_POST["sexo"]!= "2") {
+        echo "Sexo inválido";
     }else{
 
         //pega "ação" do link
@@ -46,7 +49,7 @@ if ($acao =='Salvar'){
                 $dados[] = $organiz;
             }
     
-            file_put_contents("contatos.json",json_encode($dados));
+            file_put_contents(JSON,json_encode($dados));
     
             header('location: contato.php');
         }else{
@@ -79,7 +82,7 @@ function excluir($id){
         $i++;
     }
     array_splice($dados,$i,1);
-    file_put_contents("contatos.json",json_encode($dados));
+    file_put_contents(JSON,json_encode($dados));
 }
 
 //altera
@@ -93,15 +96,15 @@ function alterar($alterado){
         $i++;
     }
     array_splice($dados,$i,1,array($alterado));
-    file_put_contents("contatos.json",json_encode($dados));
+    file_put_contents(JSON,json_encode($dados));
 }
 
 function get_dados(){
     //pega dados do json
     $contatos[] = "";
 
-    if (file_exists("contatos.json")){
-        $conteudo =file_get_contents("contatos.json");
+    if (file_exists(JSON)){
+        $conteudo =file_get_contents(JSON);
         $contatos = json_decode($conteudo, true);
     }
 
@@ -110,31 +113,17 @@ function get_dados(){
 
 function organize($id){
     //formata dados do formulario
-    $nome = $_POST['nome'];
-        $sobrenome = $_POST['sobrenome'];
-        $email = $_POST['email'];
-        $telefone = $_POST['telefone'];
-        $data = $_POST['nascimento'];
-        $idade = $_POST['idade'];
-        $cidade = $_POST['cidade'];
-        $parente = $_POST['parente'];
-        $rede = $_POST['rede'];
-        $origem = $_POST['origem'];
-        $sexo = $_POST['sexo'];
+    $nome =$_POST["nome"];
+    $email =$_POST["email"];
+    $idade =$_POST["idade"];
+    $data =$_POST["nascimento"]; 
+    $origem =$_POST["origem"];
+    $cidade =$_POST["cidade"];
+    $sexo =$_POST["sexo"];
+    
 
-        $dados = array("id"=>strval($id),
-                    'Nome' => $nome,
-                    'Sobrenome' => $sobrenome,
-                    'Email' => $email,
-                    'Telefone' => $telefone,
-                    'Data' => $data,
-                    'Idade' => $idade,
-                    'Cidade' => $cidade,
-                    'Parente' => $parente,
-                    'Rede'=> $redesocial,
-                    'Origem' => $origem,
-                    'Sexo' => $sexo ); 
-   
+    $dados = array("id"=>strval($id), "Nome"=>$nome, "Email"=>$email, "Idade"=>$idade, "Data"=>$data,  "Origem"=>$origem, "Cidade"=>$cidade, "Sexo"=>$sexo);
+
     return $dados;
 }
 
