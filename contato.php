@@ -21,24 +21,13 @@
             </div>
             <div>
                 <p>Nome:</p>
-                <input type="text" placeholder="Digite seu nome" id=" nome" class="inputs required" value=<?=isset($_GET['nome'])?$_GET['nome']:''?>>
+                <input type="text" placeholder="Digite seu nome" id=" nome" name="nome" class="inputs required" value=<?=isset($_GET['nome'])?$_GET['nome']:''?>>
                 <span class="span-required">Nome deve ter no mínimo 3 caracteres</span>
             </div>
             <div>
-                <p>Sobrenome:</p>
-                <input type="text" placeholder="Digite seu sobrenome" id=" sobrenome" class="inputs required" value=<?=isset($_GET['sobrenome'])?$_GET['sobrenome']:''?>>
-
-                <span class="span-required">Sobrenome deve ter no mínimo 3 caracteres</span>
-            </div>
-            <div>
                 <p>Email:</p>
-                <input type="email" placeholder="Digite seu email" id="email" class="inputs required"  value=<?=isset($_GET['email'])?$_GET['email']:''?>>
+                <input type="email" placeholder="Digite seu email" id="email" class="inputs required" name="email"  value=<?=isset($_GET['email'])?$_GET['email']:''?>>
                 <span class="span-required">Digite um email válido</span>
-            </div>
-            <div>
-                <p>Telefone:</p>
-                <input type="tel" placeholder="Digite seu telefone" id="telefone" class="inputs required" value=<?=isset($_GET['telefone'])?$_GET['telefone']:''?>>
-                <span class="span-required">Telefone deve ter no mínimo 8 caracteres</span>
             </div>
             <div>
                 <p>Data de Nascimento:</p>
@@ -47,7 +36,7 @@
             </div>
             <div>
                 <p>Idade:</p>
-                <input type="number" placeholder="Digite sua idade" id="idade"  class="inputs required"  value=<?=isset($_GET['idade'])?$_GET['idade']:''?>>
+                <input type="number" placeholder="Digite sua idade" id="idade" name="idade" class="inputs required"  value=<?=isset($_GET['idade'])?$_GET['idade']:''?>>
                 <span class="span-required">Idade deve ter no mínimo 1 caracteres</span>
             </div>
             <div>
@@ -69,12 +58,7 @@
                         <option value="4" <?php if(isset($_GET['cidade']) and $_GET['cidade']=='4') echo 'selected'; ?>>Blumenau</option>
                         <option value="5" <?php if(isset($_GET['cidade']) and $_GET['cidade']=='5')echo 'selected'; ?>>Rio do Sul</option>
                     </select>
-            </div>
-            <div>
-                <p>Rede Social:</p>
-                <input type="text" placeholder="Digite sua rede social" id="rede" name= "rede" class="inputs required"  value=<?=isset($_GET['rede'])?$_GET['rede']:''?>>
-                <span class="span-required">Deve ter no mínimo 3 caracteres</span>
-            </div>            
+            </div>          
             <p>Sexo:</p>
             <div class="box-select">
                     <div>
@@ -91,10 +75,6 @@
                     <div>
                         <label for="imagem" class="form-label">Imagem de Perfil</label>
                         <input class="form-control" name="img" type="file" id="formFile">
-                    </div>
-                    <div>
-                        <label for ="parente"> É parente? </label>
-                        <input type="checkbox" id="parente" name= "parente" value=<?=isset($_GET['parente'])?$_GET['parente']:''?>>
                     </div>
                 </div>
             </fieldset>
