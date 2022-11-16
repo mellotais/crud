@@ -1,6 +1,5 @@
 <?php
-  include_once "acao.php";
-
+    include_once "acao.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -40,30 +39,21 @@
     <div class="container">
         <a class="btn btn-outline-secondary mb-2" href="contato.php"><i class="bi bi-person-plus-fill"></i> Novo Contato</a>
     </div>
-    <main>
-<div class="container">
-    <form action="index.php?menuop=contatos" method="post">
-        <div class="input-group">
-            <input class="form-control" type="text" name="txt_pesquisa" value="<?=$txt_pesquisa?>">
-            <button class="btn btn-outline-success btn-sm" type="submit"><i class="bi bi-search"></i> Pesquisar</button>
-        </div>
-       
-    </form>
-</div> 
+    <main> 
    <div class="container">
-        <table class="table table-dark table-striped table-bordered table-sm">>
+        <table class="table table-dark table-striped table-bordered table-sm">
             <thead>
                 <tr>
-                    <th>Id</th><th>Nome</th><th>Telefone</th><th>Alterar</th><th>Excluir</th>
+                    <th>Id</th><th>Nome</th><th>Email</th><th>Alterar</th><th>Excluir</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
             <?php
                 $dados = get_dados();
                 foreach($dados as $contato){
-                $alterar = "<a href='contato.php?acao=editar&id=".$contato['id']."&nome=".$contato['Nome']."&sobrenome=".$contato['Sobrenome']."&data=".$contato['Data']."&idade=".$contato['Idade']."&email=".$contato['Email']."&telefone=".$contato['Telefone']."&sexo=".$contato['Sexo']."&parente=".$contato['Parente']."&origem=".$contato['Origem']."&rede=".$contato['Rede']."&cidade=".$contato['Cidade']."'>Alterar</a>";
-                $excluir = "<a href='index.php?acao=excluir&id=".$contato['id']."'>Excluir</a>";
-                echo "<tr><td>".$contato['id']."</td><td>".$contato['Nome']."</td><td>".$contato['Telefone']."</td><td>".$alterar."</td><td>".$excluir."</td></tr>";
+                $alterar = "<a href='contato.php?acao=editar&id=".$contato['id']."&nome=".$contato['Nome']."&email=".$contato['Email']."&idade=".$contato['Idade']."&data=".$contato['Data']."&origem=".$contato['Origem']."&cidade=".$contato['Cidade']."&sexo=".$contato['Sexo']."'>Alt</a>";
+                $excluir = "<a href='index.php?acao=excluir&id=".$contato['id']."'>Exc</a>";
+                echo "<tr><td>".$contato['id']."</td><td>".$contato['Nome']."</td><td>".$contato['Email']."</td><td>".$alterar."</td><td>".$excluir."</td></tr>";
                 }
             ?>
             </tbody>
@@ -77,6 +67,8 @@
     
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-
+<p id="listagem"></p>
+                
+<script src="script.js"></script>
 </body>
 </html>
